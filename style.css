@@ -407,6 +407,17 @@ nav {
     margin-bottom: 12px;
 }
 
+/* Diminui especificamente a linha do e-mail no rodapé */
+.footer-col p:has(.fa-envelope) {
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* Diminui apenas o ícone do envelope */
+.footer-col p .fa-envelope {
+    font-size: 0.8rem;
+}
+
 .footer-col ul li a {
     color: #94a3b8;
     text-decoration: none;
@@ -551,6 +562,48 @@ body {
     overflow-x: hidden;
     width: 100%;
     position: relative;
+}
+
+/* Estilo para os avisos de ilustração */
+.disclaimer {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.img-caption {
+    display: block;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.legal-alert-bar {
+    background-color: #8d8d8d1f;
+    /* Amarelo suave para atenção, sem ser agressivo */
+    color: #000000;
+    /* Texto em tom castanho para contraste legal */
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    border-bottom: 1px solid #8d8d8d1f;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+}
+
+.legal-alert-bar strong {
+    color: #000000;
+    margin-right: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 @media (max-width: 1024px) {

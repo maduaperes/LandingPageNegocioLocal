@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- CONFIGURAÇÃO CENTRALIZADA ---
+    const telefoneDono = "5515996514120"; 
+    // ---------------------------------
+
     // 1. Efeito de Scroll no Header
     const header = document.getElementById('main-header');
     window.addEventListener('scroll', () => {
@@ -10,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Menu Mobile (Hambúrguer)
+    // 2. Menu Mobile
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -19,11 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             navMenu.classList.toggle('active');
-            // Previne o scroll do corpo quando o menu está aberto
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'initial';
         });
 
-        // Fecha o menu ao clicar em qualquer link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Gestão de Consentimento de Cookies (LGPD)
+    // 3. Gestão de Cookies (LGPD)
     const cookieBanner = document.getElementById('cookie-consent');
     const acceptBtn = document.getElementById('accept-cookies');
 
@@ -51,17 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Envio Real para WhatsApp
+    // 4. Envio do Formulário com Confirmação de LGPD
     const form = document.getElementById('contact-form');
     
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // --- CONFIGURAÇÃO DO CLIENTE ---
-            const telefoneDono = "5515996514120"; 
-            // -------------------------------
-
             const nome = document.getElementById('form-nome').value;
             const email = document.getElementById('form-email').value;
             const mensagem = document.getElementById('form-mensagem').value;
@@ -79,10 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.opacity = '0.7';
             btn.disabled = true;
 
-            const textoMensagem = `*Novo Orçamento - Business Pro*%0A%0A` +
-                                  `*Nome:* ${nome}%0A` +
-                                  `*E-mail:* ${email}%0A` +
-                                  `*Mensagem:* ${mensagem}`;
+            // Mensagem formatada com confirmação jurídica
+            const textoMensagem = encodeURIComponent(
+                `*Novo Orçamento - Business Pro*\n\n` +
+                `*Nome:* ${nome}\n` +
+                `*E-mail:* ${email}\n` +
+                `*Mensagem:* ${mensagem}\n\n` +
+                `_O cliente declarou aceitar a Política de Privacidade (LGPD)._`
+            );
 
             const urlWhatsApp = `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${textoMensagem}`;
 
@@ -96,9 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Animação de Entrada (Intersection Observer)
-    const observerOptions = { threshold: 0.1 };
+    // 5. Atualização de Links de WhatsApp
+    document.querySelectorAll('a[href*="api.whatsapp.com"]').forEach(link => {
+        try {
+            const currentUrl = new URL(link.href);
+            const textParam = currentUrl.searchParams.get('text') || "";
+            link.href = `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${encodeURIComponent(textParam)}`;
+        } catch (e) {
+            // Fallback para links mal formatados
+            link.href = `https://api.whatsapp.com/send?phone=${telefoneDono}`;
+        }
+    });
 
+    // 6. Animações de Entrada Suaves
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -106,12 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.15 });
 
     document.querySelectorAll('.service-card, .about-content, .about-image').forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease-out';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
         observer.observe(el);
     });
 });

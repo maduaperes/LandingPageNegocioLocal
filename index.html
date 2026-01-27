@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Pro | Soluções Locais de Excelência</title>
+    <title>Business Pro | Soluções Locais</title>
+
+    <link rel="icon" href="data:,">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
@@ -16,21 +18,25 @@
     <header id="main-header">
         <nav class="container">
             <div class="logo">BUSINESS<span>PRO</span></div>
-
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#contact" class="btn-sm">Orçamento</a></li>
             </ul>
-
-            <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu" id="mobile-menu" role="button" aria-label="Abrir Menu">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
         </nav>
     </header>
+
+    <div class="legal-alert-bar">
+        <span><strong>AVISO:</strong> Imagens e textos são meramente ilustrativos. Este é um modelo de demonstração que
+            será totalmente
+            adaptado.</span>
+    </div>
 
     <section id="home" class="hero">
         <div class="container">
@@ -79,7 +85,8 @@
             <div class="about-grid">
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
-                        alt="Nossa Equipe">
+                        alt="Equipe Profissional">
+                    <span class="img-caption">*Representação ilustrativa de nossa estrutura de atendimento.</span>
                     <div class="experience-badge">
                         <span class="number">10+</span>
                         <span class="text">Anos de<br>Experiência</span>
@@ -119,12 +126,10 @@
                     <h2>Vamos conversar?</h2>
                     <p>Preencha os dados e nossa equipe retornará em até 24h úteis.</p>
                     <div class="info-item">
-                        <strong>Endereço:</strong>
-                        <span>Av. Paulista, 1000 - São Paulo/SP</span>
-                    </div>
-                    <div class="info-item">
                         <strong>Documentação:</strong>
-                        <span>CNPJ: 00.000.000/0001-00</span>
+                        <span>CNPJ: 00.000.000/0001-00 <small>(Fictício)</small></span>
+                        <strong>Endereço:</strong>
+                        <span>Av. Paulista, 1234 - Centro, SP <small>(Fictício)</small></span>
                     </div>
                 </div>
 
@@ -133,9 +138,9 @@
                     <input type="email" id="form-email" placeholder="E-mail Profissional" required>
                     <textarea id="form-mensagem" placeholder="Como podemos ajudar seu negócio?"></textarea>
                     <div class="checkbox-group">
-                        <input type="checkbox" id="lgpd-check" required>
-                        <label for="lgpd-check">Aceito a <a href="politica.html" target="_blank">Política de
-                                Privacidade</a> (LGPD).</label>
+                        <input type="checkbox" id="lgpd-check" name="lgpd_consent" required>
+                        <label for="lgpd-check">Li e aceito a <a href="politica.html" target="_blank"
+                                rel="noopener">Política de Privacidade</a> (LGPD).</label>
                     </div>
                     <button type="submit" class="btn-submit">Enviar via WhatsApp</button>
                 </form>
@@ -148,7 +153,8 @@
         <button id="accept-cookies">Aceitar e Fechar</button>
     </div>
 
-    <a href="https://api.whatsapp.com/send?phone=551533333333" class="whatsapp-float" target="_blank">
+    <a href="https://api.whatsapp.com/send?phone=5515996514120" class="whatsapp-float" target="_blank"
+        rel="noopener noreferrer" title="Iniciar atendimento via WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -168,9 +174,13 @@
                     <p class="description">Excelência em soluções profissionais para o mercado local. Transparência,
                         inovação e resultados sólidos.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=5515996514120" aria-label="WhatsApp"
+                            target="_blank" rel="noopener" title="Iniciar atendimento via WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -187,20 +197,21 @@
                 <div class="footer-col">
                     <h4>Jurídico</h4>
                     <ul>
-                        <li><a href="politica.html#termos">Termos de Uso</a></li>
-                        <li><a href="politica.html#privacidade">Política de Privacidade</a></li>
-                        <li><a href="politica.html#lgpd">Gestão de Dados</a></li>
-                        <li><a href="politica.html#compliance">Compliance</a></li>
+                        <li><a href="politica.html">Termos de Uso</a></li>
+                        <li><a href="politica.html">Política de Privacidade</a></li>
+                        <li><a href="politica.html">Gestão de Dados</a></li>
+                        <li><a href="politica.html">Compliance</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Contato Direto</h4>
-                    <p><i class="fas fa-phone"></i> (15) 3333-3333</p>
-                    <p><i class="fas fa-envelope"></i> contato@businesspro.com.br</p>
+                    <p><i class="fas fa-phone"></i> (15) 99651-4120</p>
+                    <p><i class="fas fa-envelope"></i> mariaeduardaaperes@hotmail.com</p>
                     <div class="fiscal-info">
-                        <p><strong>CNPJ:</strong> 00.000.000/0001-00</p>
-                        <p><strong>Endereço:</strong> Av. Paulista, 1000 - SP</p>
+                        <p><strong>Razão Social:</strong> Business Pro Soluções Ltda <small>(Fictício)</small></p>
+                        <p><strong>CNPJ:</strong> 00.000.000/0001-00 <small>(Fictício)</small></p>
+                        <p><strong>Endereço:</strong> Av. Paulista, 1234 - Centro, SP<small> (Fictício)</small></p>
                     </div>
                 </div>
             </div>
@@ -208,9 +219,11 @@
 
         <div class="footer-bottom">
             <div class="container bottom-flex">
+                <p>Imagens e textos são meramente ilustrativos. Este é um modelo de demonstração que será totalmente
+                    adaptado.</p>
                 <p>&copy; 2026 Business Pro. Todos os direitos reservados.</p>
                 <div class="payment-methods">
-                    <span class="text-xs">Formas de Pagamento:</span>
+                    <span class="text-xs">Pagamento:</span>
                     <i class="fab fa-cc-visa"></i>
                     <i class="fab fa-cc-mastercard"></i>
                     <i class="fab fa-pix"></i>
