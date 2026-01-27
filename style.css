@@ -301,8 +301,14 @@ nav {
 }
 
 .checkbox-group a {
-color: var(--primary);
-text-decoration: none;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 14px !important;
+    height: 14px !important;
+    margin-top: 2px !important;
 }
 
 .btn-submit {
