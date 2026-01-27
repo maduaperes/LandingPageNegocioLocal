@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
         rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
@@ -16,15 +16,18 @@
     <header id="main-header">
         <nav class="container">
             <div class="logo">BUSINESS<span>PRO</span></div>
-            <ul class="nav-links">
+
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#contact" class="btn-sm">Orçamento</a></li>
             </ul>
+
             <div class="mobile-menu" id="mobile-menu">
-                <div class="line"></div>
-                <div class="line"></div>
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
             </div>
         </nav>
     </header>
@@ -85,10 +88,8 @@
                 <div class="about-content">
                     <span class="badge">Quem Somos</span>
                     <h2>Compromisso com a <span class="highlight">Excelência</span> e Transparência.</h2>
-                    <p>
-                        Fundada com o objetivo de elevar o padrão de serviços na região, nossa empresa se destaca pelo
-                        atendimento personalizado e soluções técnicas de alta precisão.
-                    </p>
+                    <p>Fundada com o objetivo de elevar o padrão de serviços na região, nossa empresa se destaca pelo
+                        atendimento personalizado e soluções técnicas de alta precisão.</p>
                     <div class="about-features">
                         <div class="feature-item">
                             <i class="fas fa-check-circle"></i>
@@ -126,15 +127,17 @@
                         <span>CNPJ: 00.000.000/0001-00</span>
                     </div>
                 </div>
+
                 <form id="contact-form" class="main-form">
-                    <input type="text" placeholder="Seu Nome" required>
-                    <input type="email" placeholder="E-mail Profissional" required>
-                    <textarea placeholder="Como podemos ajudar seu negócio?"></textarea>
+                    <input type="text" id="form-nome" placeholder="Seu Nome" required>
+                    <input type="email" id="form-email" placeholder="E-mail Profissional" required>
+                    <textarea id="form-mensagem" placeholder="Como podemos ajudar seu negócio?"></textarea>
                     <div class="checkbox-group">
                         <input type="checkbox" id="lgpd-check" required>
-                        <label for="lgpd-check">Aceito a Política de Privacidade (LGPD).</label>
+                        <label for="lgpd-check">Aceito a <a href="politica.html" target="_blank">Política de
+                                Privacidade</a> (LGPD).</label>
                     </div>
-                    <button type="submit" class="btn-submit">Enviar Solicitação</button>
+                    <button type="submit" class="btn-submit">Enviar via WhatsApp</button>
                 </form>
             </div>
         </div>
@@ -144,6 +147,10 @@
         <p>Utilizamos cookies para personalizar sua experiência. Ao continuar, você concorda com nossas diretrizes.</p>
         <button id="accept-cookies">Aceitar e Fechar</button>
     </div>
+
+    <a href="https://api.whatsapp.com/send?phone=551533333333" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <footer class="site-footer">
         <div class="footer-cta container">
@@ -158,10 +165,8 @@
             <div class="footer-grid">
                 <div class="footer-col branding">
                     <div class="logo">BUSINESS<span>PRO</span></div>
-                    <p class="description">
-                        Excelência em soluções profissionais para o mercado local. Transparência, inovação e resultados
-                        sólidos.
-                    </p>
+                    <p class="description">Excelência em soluções profissionais para o mercado local. Transparência,
+                        inovação e resultados sólidos.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -182,10 +187,10 @@
                 <div class="footer-col">
                     <h4>Jurídico</h4>
                     <ul>
-                        <li><a href="politica.html">Termos de Uso</a></li>
-                        <li><a href="politica.html">Política de Privacidade</a></li>
-                        <li><a href="politica.html">Gestão de Dados</a></li>
-                        <li><a href="politica.html">Compliance</a></li>
+                        <li><a href="politica.html#termos">Termos de Uso</a></li>
+                        <li><a href="politica.html#privacidade">Política de Privacidade</a></li>
+                        <li><a href="politica.html#lgpd">Gestão de Dados</a></li>
+                        <li><a href="politica.html#compliance">Compliance</a></li>
                     </ul>
                 </div>
 
@@ -208,7 +213,7 @@
                     <span class="text-xs">Formas de Pagamento:</span>
                     <i class="fab fa-cc-visa"></i>
                     <i class="fab fa-cc-mastercard"></i>
-                    <i class="fas fa-pix"></i>
+                    <i class="fab fa-pix"></i>
                 </div>
             </div>
         </div>
