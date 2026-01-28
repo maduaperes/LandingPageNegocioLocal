@@ -341,6 +341,15 @@ nav {
     border: 1px solid #e2e8f0;
 }
 
+.cookie-banner button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 .site-footer {
     background-color: var(--dark);
     color: var(--white);
@@ -591,6 +600,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+
+
 
 @media (max-width: 1024px) {
     .hero {
