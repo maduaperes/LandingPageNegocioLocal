@@ -85,8 +85,9 @@ nav {
 }
 
 .hero {
-    padding: 180px 0 100px;
-    background: radial-gradient(circle at top right, #eff6ff 0%, #ffffff 50%);
+    padding: 300px 0 100px;
+    background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.12), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.08), transparent 45%);
     position: relative;
     overflow: hidden;
 }
@@ -147,6 +148,30 @@ nav {
     margin-left: 1rem;
 }
 
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.btn-third {
+    background: var(--);
+    color: var(--p);
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
+    display: inline-block;
+    border: 2px solid var(--white);
+    margin-left: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.171);
+}
+
+.btn-third:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.171);
+}
+
 .services {
     padding: 100px 0;
 }
@@ -164,15 +189,16 @@ nav {
 
 .service-card {
     padding: 3rem;
-    border: 1px solid #e2e8f0;
+    border: 2px solid #e2e8f0;
     border-radius: 24px;
     transition: var(--transition);
+    cursor: pointer;
 }
 
 .service-card:hover {
     border-color: var(--primary);
     background: var(--white);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 25px rgba(37, 100, 235, 0.103);
 }
 
 .icon-box {
@@ -323,6 +349,12 @@ nav {
     border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
 }
 
 .cookie-banner {
@@ -571,7 +603,7 @@ body {
 }
 
 .img-caption {
-    display: block;
+    display: none;
     font-size: 0.7rem;
     color: #666;
     margin-top: 5px;
@@ -588,7 +620,7 @@ body {
     border-bottom: 1px solid #8d8d8d1f;
     width: 100%;
     box-sizing: border-box;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     margin-top: 90px;
@@ -601,7 +633,118 @@ body {
     letter-spacing: 0.5px;
 }
 
+/*----Animações----*/
 
+@keyframes heroWave {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(0, -10px) rotate(10deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.hero h1 {
+    animation: heroTextFloat 6s ease-in-out infinite;
+}
+
+@keyframes heroTextFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.experience-badge {
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 50px rgba(37, 99, 235, 0.6);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+header {
+    animation: navFloat 6s ease-in-out infinite;
+}
+
+@keyframes navFloat {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    50% {
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    }
+}
+
+.footer-cta {
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-cta::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.25),
+            transparent);
+    animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.whatsapp-float {
+    animation: whatsappFloat 3s ease-in-out infinite;
+}
+
+@keyframes whatsappFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
 
 @media (max-width: 1024px) {
     .hero {
