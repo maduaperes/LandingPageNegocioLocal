@@ -1,11 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- CONFIGURAÇÃO CENTRALIZADA ---
+    /* ===============================
+       CONFIGURAÇÃO CENTRAL
+    =============================== */
     const telefoneDono = "5515996514120";
-    // ---------------------------------
+
+    function gerarLinkWhats(message = "") {
+        const texto = encodeURIComponent(message);
+        return `https://wa.me/${telefoneDono}${texto ? `?text=${texto}` : ""}`;
+    }
 
     /* ===============================
-       1. EFEITO DE SCROLL NO HEADER
+       1. HEADER SCROLL
     =============================== */
     const header = document.getElementById('main-header');
 
@@ -82,73 +88,59 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalText = btn.innerText;
 
             btn.innerText = 'Redirecionando...';
-            btn.style.opacity = '0.7';
             btn.disabled = true;
 
-            const textoMensagem = encodeURIComponent(
+            const textoMensagem =
                 `*Novo Orçamento - Business Pro*\n\n` +
                 `*Nome:* ${nome}\n` +
                 `*E-mail:* ${email}\n` +
                 `*Mensagem:* ${mensagem}\n\n` +
-                `_O cliente declarou aceitar a Política de Privacidade (LGPD)._`
-            );
-
-            const urlWhatsApp =
-                `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${textoMensagem}`;
+                `_O cliente aceitou a Política de Privacidade (LGPD)._`;
 
             setTimeout(() => {
-                window.open(urlWhatsApp, '_blank');
+                window.open(gerarLinkWhats(textoMensagem), '_blank');
                 form.reset();
                 btn.innerText = originalText;
-                btn.style.opacity = '1';
                 btn.disabled = false;
-            }, 800);
+            }, 700);
         });
     }
 
     /* ===============================
-       5. ATUALIZA LINKS DE WHATSAPP
+       5. BOTÕES DE WHATSAPP (CTA / FOOTER)
+       use data-message no HTML
     =============================== */
-    document.querySelectorAll('a[href*="api.whatsapp.com"]').forEach(link => {
-        try {
-            const currentUrl = new URL(link.href);
-            const textParam = currentUrl.searchParams.get('text') || "";
-            link.href =
-                `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${encodeURIComponent(textParam)}`;
-        } catch {
-            link.href = `https://api.whatsapp.com/send?phone=${telefoneDono}`;
-        }
+    document.querySelectorAll('.js-whatsapp').forEach(link => {
+        const message =
+            link.dataset.message ||
+            "Olá! Vim pelo site e gostaria de entender melhor como você pode ajudar meu negócio.";
+
+        link.setAttribute('href', gerarLinkWhats(message));
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
     });
 
     /* ===============================
-       6. ANIMAÇÃO DO HERO (ON LOAD)
+       6. ANIMAÇÃO HERO
     =============================== */
-    const heroElements = document.querySelectorAll('.hero-animate');
-
-    heroElements.forEach((el, index) => {
-        setTimeout(() => {
-            el.classList.add('show');
-        }, 200 + index * 150);
+    document.querySelectorAll('.hero-animate').forEach((el, i) => {
+        setTimeout(() => el.classList.add('show'), 200 + i * 150);
     });
 
     /* ===============================
-       7. ANIMAÇÕES AO DESCER A TELA
-       (exceto footer)
+       7. REVEAL SCROLL
     =============================== */
-    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
 
-    const revealObserver = new IntersectionObserver(
-        entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.15 }
+    document.querySelectorAll('.reveal').forEach(el =>
+        revealObserver.observe(el)
     );
-
-    revealElements.forEach(el => revealObserver.observe(el));
 
 });
