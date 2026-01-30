@@ -153,25 +153,6 @@ nav {
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
 }
 
-.btn-third {
-    background: var(--);
-    color: var(--p);
-    padding: 1rem 2.5rem;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: var(--transition);
-    display: inline-block;
-    border: 2px solid var(--white);
-    margin-left: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.171);
-}
-
-.btn-third:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.171);
-}
-
 .services {
     padding: 100px 0;
 }
@@ -635,35 +616,60 @@ body {
 
 /*----Animações----*/
 
-@keyframes heroWave {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    50% {
-        transform: translate(0, -10px) rotate(10deg);
-    }
-
-    100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
+/* Estado inicial */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
 }
 
-.hero h1 {
-    animation: heroTextFloat 6s ease-in-out infinite;
+/* Variações */
+.fade-up {
+    transform: translateY(40px);
 }
 
-@keyframes heroTextFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
+.fade-down {
+    transform: translateY(-40px);
 }
+
+.scale-in {
+    transform: scale(0.95);
+}
+
+/* Quando aparece */
+.reveal.show {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Delays */
+.delay-1 {
+    transition-delay: 0.15s;
+}
+
+.delay-2 {
+    transition-delay: 0.3s;
+}
+
+.delay-3 {
+    transition-delay: 0.45s;
+}
+
+.hero-animate {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero-animate.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.delay-4 {
+    transition-delay: 0.6s;
+}
+
 
 .experience-badge {
     animation: badgePulse 3s ease-in-out infinite;
@@ -683,10 +689,6 @@ body {
     100% {
         transform: translateY(0) scale(1);
     }
-}
-
-header {
-    animation: navFloat 6s ease-in-out infinite;
 }
 
 @keyframes navFloat {

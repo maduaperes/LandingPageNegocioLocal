@@ -1,20 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // --- CONFIGURAÇÃO CENTRALIZADA ---
-    const telefoneDono = "5515996514120"; 
+    const telefoneDono = "5515996514120";
     // ---------------------------------
 
-    // 1. Efeito de Scroll no Header
+    /* ===============================
+       1. EFEITO DE SCROLL NO HEADER
+    =============================== */
     const header = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
 
-    // 2. Menu Mobile
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    }
+
+    /* ===============================
+       2. MENU MOBILE
+    =============================== */
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -23,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'initial';
+            document.body.style.overflow =
+                navMenu.classList.contains('active') ? 'hidden' : 'initial';
         });
 
         navLinks.forEach(link => {
@@ -35,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Gestão de Cookies (LGPD)
+    /* ===============================
+       3. COOKIES (LGPD)
+    =============================== */
     const cookieBanner = document.getElementById('cookie-consent');
     const acceptBtn = document.getElementById('accept-cookies');
 
@@ -53,13 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Envio do Formulário com Confirmação de LGPD
+    /* ===============================
+       4. FORMULÁRIO → WHATSAPP
+    =============================== */
     const form = document.getElementById('contact-form');
-    
+
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            
+
             const nome = document.getElementById('form-nome').value;
             const email = document.getElementById('form-email').value;
             const mensagem = document.getElementById('form-mensagem').value;
@@ -72,12 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const btn = form.querySelector('.btn-submit');
             const originalText = btn.innerText;
-            
+
             btn.innerText = 'Redirecionando...';
             btn.style.opacity = '0.7';
             btn.disabled = true;
 
-            // Mensagem formatada com confirmação jurídica
             const textoMensagem = encodeURIComponent(
                 `*Novo Orçamento - Business Pro*\n\n` +
                 `*Nome:* ${nome}\n` +
@@ -86,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 `_O cliente declarou aceitar a Política de Privacidade (LGPD)._`
             );
 
-            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${textoMensagem}`;
+            const urlWhatsApp =
+                `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${textoMensagem}`;
 
             setTimeout(() => {
                 window.open(urlWhatsApp, '_blank');
@@ -98,32 +106,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Atualização de Links de WhatsApp
+    /* ===============================
+       5. ATUALIZA LINKS DE WHATSAPP
+    =============================== */
     document.querySelectorAll('a[href*="api.whatsapp.com"]').forEach(link => {
         try {
             const currentUrl = new URL(link.href);
             const textParam = currentUrl.searchParams.get('text') || "";
-            link.href = `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${encodeURIComponent(textParam)}`;
-        } catch (e) {
-            // Fallback para links mal formatados
+            link.href =
+                `https://api.whatsapp.com/send?phone=${telefoneDono}&text=${encodeURIComponent(textParam)}`;
+        } catch {
             link.href = `https://api.whatsapp.com/send?phone=${telefoneDono}`;
         }
     });
 
-    // 6. Animações de Entrada Suaves
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.15 });
+    /* ===============================
+       6. ANIMAÇÃO DO HERO (ON LOAD)
+    =============================== */
+    const heroElements = document.querySelectorAll('.hero-animate');
 
-    document.querySelectorAll('.service-card, .about-content, .about-image').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        observer.observe(el);
+    heroElements.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('show');
+        }, 200 + index * 150);
     });
+
+    /* ===============================
+       7. ANIMAÇÕES AO DESCER A TELA
+       (exceto footer)
+    =============================== */
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.15 }
+    );
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
 });
