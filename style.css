@@ -85,7 +85,7 @@ nav {
 }
 
 .hero {
-    padding: 300px 0 100px;
+    padding: 175px 0 100px;
     background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.12), transparent 40%),
         radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.08), transparent 45%);
     position: relative;
@@ -584,7 +584,7 @@ body {
 }
 
 .img-caption {
-    display: none;
+    display: block;
     font-size: 0.7rem;
     color: #666;
     margin-top: 5px;
@@ -601,7 +601,7 @@ body {
     border-bottom: 1px solid #8d8d8d1f;
     width: 100%;
     box-sizing: border-box;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 90px;
