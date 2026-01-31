@@ -740,6 +740,12 @@ body {
     animation: badgePulse 3s ease-in-out infinite;
 }
 
+a[href^="tel"] {
+    color: var(--dark) !important;
+    text-decoration: none !important;
+}
+
+
 @keyframes badgePulse {
     0% {
         transform: translateY(0) scale(1);
