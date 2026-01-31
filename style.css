@@ -741,7 +741,7 @@ body {
 }
 
 a[href^="tel"] {
-    color: var(--dark) !important;
+    color: var(--white) !important;
     text-decoration: none !important;
 }
 
