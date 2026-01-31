@@ -128,15 +128,25 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-wrapper reveal fade-up">
-                <div class="contact-info">
+
+                <div class="contact-header">
                     <h2>Vamos conversar?</h2>
                     <p>Preencha os dados e nossa equipe retornará em até 24h úteis.</p>
-                    <div class="info-item">
-                        <strong>Documentação:</strong>
-                        <span>CNPJ: 00.000.000/0001-00 <small>(Fictício)</small></span>
-                        <br>
-                        <strong>Endereço:</strong>
-                        <span>Av. Paulista, 1234 - Centro, SP <small>(Fictício)</small></span>
+
+                    <div class="contact-infos">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. Paulista, 1234 - Bela Vista, SP</span>
+                            <small> (Fictício)</small>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>mariaeduardaaperes@hotmail.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(15) 99651-4129</span>
+                        </div>
                     </div>
                 </div>
 
@@ -144,16 +154,23 @@
                     <input type="text" id="form-nome" placeholder="Seu Nome" required>
                     <input type="email" id="form-email" placeholder="E-mail Profissional" required>
                     <textarea id="form-mensagem" placeholder="Como podemos ajudar seu negócio?"></textarea>
+
                     <div class="checkbox-group">
-                        <input type="checkbox" id="lgpd-check" name="lgpd_consent" required>
-                        <label for="lgpd-check">Li e aceito a <a href="politica.html" target="_blank"
-                                rel="noopener">Política de Privacidade</a> (LGPD).</label>
+                        <input type="checkbox" id="lgpd-check" required>
+                        <label for="lgpd-check">
+                            Li e aceito a <a href="politica.html" target="_blank">Política de Privacidade</a>.
+                        </label>
                     </div>
-                    <button type="submit" class="btn-submit">Enviar via WhatsApp</button>
+
+                    <button type="submit" class="btn-submit">
+                        Enviar via WhatsApp
+                    </button>
                 </form>
+
             </div>
         </div>
     </section>
+
 
     <div id="cookie-consent" class="cookie-banner">
         <p>Utilizamos cookies para personalizar sua experiência. Ao continuar, você concorda com nossas diretrizes.</p>
@@ -171,7 +188,8 @@
                 <h3>Pronto para elevar o nível do seu negócio?</h3>
                 <p>Junte-se a centenas de empresas que confiam em nosso trabalho.</p>
             </div>
-            <a class="btn-primary js-whatsapp" data-message="Olá! Vim pelo site e gostaria de entender melhor como você pode ajudar meu negócio.">
+            <a class="btn-primary js-whatsapp"
+                data-message="Olá! Vim pelo site e gostaria de entender melhor como você pode ajudar meu negócio.">
                 Falar com Consultor
             </a>
         </div>
