@@ -143,4 +143,32 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el)
     );
 
+    /* ===============================
+       8. SIMULA HOVER NOS CARDS MOBILE
+    =============================== */
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', e => {
+                e.stopPropagation(); // previne click no body
+
+                // Remove hover dos outros cards
+                serviceCards.forEach(c => {
+                    if (c !== card) c.classList.remove('hover');
+                });
+
+                // Alterna hover no card clicado
+                card.classList.toggle('hover');
+            });
+        });
+
+        // Remove hover ao clicar fora
+        document.body.addEventListener('click', () => {
+            serviceCards.forEach(card => card.classList.remove('hover'));
+        });
+    }
+
 });

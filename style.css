@@ -300,7 +300,6 @@ nav {
     color: white;
 }
 
-/* Cabeçalho */
 .contact-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -316,7 +315,6 @@ nav {
     font-size: 1rem;
 }
 
-/* Infos */
 .contact-infos {
     display: flex;
     justify-content: center;
@@ -338,7 +336,6 @@ nav {
     font-size: 1.1rem;
 }
 
-/* Formulário */
 .main-form {
     max-width: 500px;
     margin: 0 auto;
@@ -372,7 +369,6 @@ nav {
     resize: none;
 }
 
-/* Botão */
 .btn-submit {
     display: block;
     width: 100%;
@@ -679,15 +675,11 @@ body {
     letter-spacing: 0.5px;
 }
 
-/*----Animações----*/
-
-/* Estado inicial */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
 }
 
-/* Variações */
 .fade-up {
     transform: translateY(40px);
 }
@@ -700,14 +692,12 @@ body {
     transform: scale(0.95);
 }
 
-/* Quando aparece */
 .reveal.show {
     opacity: 1;
     transform: none;
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Delays */
 .delay-1 {
     transition-delay: 0.15s;
 }
@@ -1351,11 +1341,8 @@ a[href^="tel"] {
     .contact-infos {
         display: flex;
         flex-direction: column;
-        /* empilha */
         align-items: flex-start;
-        /* centraliza */
         gap: 10px;
-        /* DIMINUI espaço */
         font-size: 0.85rem !important;
         margin-top: 0.5rem;
         text-align: left;
@@ -1368,7 +1355,6 @@ a[href^="tel"] {
         gap: 6px;
         margin: 0 !important;
         white-space: normal;
-        /* permite quebra */
         text-align: left;
     }
 
