@@ -1,6 +1,3 @@
-/* =========================================
-   VARIÁVEIS E RESET
-   ========================================= */
 :root {
     --primary: #0f172a;
     --primary-dark: #004dc2;
@@ -30,6 +27,9 @@ body {
     color: var(--text-main);
     background-color: var(--white);
     overflow-x: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -38,9 +38,6 @@ body {
     padding: 0 20px;
 }
 
-/* =========================================
-   HEADER
-   ========================================= */
 .site-header {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
@@ -67,7 +64,7 @@ body {
 .logo span {
     font-size: 0.65rem;
     display: block;
-    color: var(--primary);
+    color: var(--text-light);
     text-transform: uppercase;
     font-weight: 700;
 }
@@ -92,12 +89,8 @@ body {
     border-radius: 50px;
 }
 
-/* =========================================
-   HERO SECTION (SPLIT LAYOUT)
-   ========================================= */
 .hero {
     padding: 100px 0;
-    background: var(--bg-light);
     position: relative;
 }
 
@@ -171,7 +164,6 @@ body {
     border-color: var(--primary);
 }
 
-/* ELEMENTO GRÁFICO HERO */
 .hero-visual {
     flex: 1;
     position: relative;
@@ -180,71 +172,181 @@ body {
     align-items: center;
 }
 
-.graphic-shape {
-    width: 450px;
-    height: 450px;
-    background: var(--bg-light);
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    filter: blur(60px);
-    opacity: 0.12;
+.floating-card-bg {
     position: absolute;
-
-}
-
-.floating-card {
-    background: white;
-    padding: 30px;
-    border-radius: 24px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 2;
-    width: 280px;
-
+    width: 360px;
+    height: 260px;
+    background: #f1f5f9;
+    border-radius: 32px;
+    z-index: 1;
+    transform: rotate(6deg) translateX(15px) translateY(10px);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    pointer-events: none;
 }
 
 .card-header {
     display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 20;
 }
 
+.floating-card {
+    position: relative;
+    z-index: 2;
+    width: 360px;
+    height: 260px;
+    background: white;
+    padding: 35px;
+    border-radius: 32px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.192);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- CONTEÚDOS DO CARD --- */
+.card-content {
+    position: absolute;
+    left: 35px;
+    right: 35px;
+    top: 80px;
+    /* Ajustado para o novo padding */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideAutoCycle 12s infinite;
+}
+
+@keyframes slideAutoCycle {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    5%,
+    28% {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    33.33%,
+    100% {
+        opacity: 0;
+        transform: translateY(-25px);
+        pointer-events: none;
+    }
+}
+
+/* Delays (Mantidos) */
+.slide-1 {
+    animation-delay: 0s;
+}
+
+.slide-2 {
+    animation-delay: 4s;
+}
+
+.slide-3 {
+    animation-delay: 8s;
+}
+
+/* --- BOLINHAS (DOTS) --- */
 .dot {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    /* Aumentei um pouco mais para visibilidade */
+    height: 12px;
     border-radius: 50%;
-    background: #e2e8f0;
+    background: #cbd5e1;
+    /* Cinza médio (mais visível que o anterior) */
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Reativando a animação automática */
+    animation: dotAutoCycle 12s infinite;
 }
 
-.dot.blue {
-    background: var(--primary);
+#dot-1 {
+    animation-delay: 0s;
 }
 
+#dot-2 {
+    animation-delay: 4s;
+}
+
+#dot-3 {
+    animation-delay: 8s;
+}
+
+@keyframes dotAutoCycle {
+
+    /* Durante os 4 segundos de cada slide, a bolinha brilha */
+    0%,
+    28% {
+        background: var(--primary);
+        /* Cor de destaque (ex: azul) */
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    /* Fora do tempo dela, ela volta ao cinza sutil */
+    33.33%,
+    100% {
+        background: #cbd5e1;
+        transform: scale(1);
+        opacity: 0.6;
+        /* Leve transparência para as inativas */
+    }
+}
+
+/* Estilização dos elementos internos */
 .card-stats {
-    font-weight: 800;
-    font-size: 2.2rem;
-    color: var(--secondary);
     display: block;
+    font-size: 2.4rem;
+    /* Aumentado de 1.8rem - maior destaque */
+    font-weight: 800;
+    color: var(--secondary);
+    margin: 8px 0;
+    line-height: 1;
 }
 
 .card-label {
     font-size: 0.9rem;
+    /* Aumentado */
+    font-weight: 700;
     color: var(--text-light);
-    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.progress-bar {
-    height: 8px;
-    background: #f1f5f9;
-    border-radius: 10px;
+.floating-card p {
+    font-size: 0.9rem;
+    /* Aumentado */
     margin-top: 15px;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Barra de Progresso Maior */
+.progress-bar {
+    height: 12px;
+    /* Aumentada de 8px */
+    background: #f1f5f9;
+    border-radius: 20px;
+    margin-top: 12px;
     overflow: hidden;
 }
 
 .progress-fill {
-    width: 70%;
     height: 100%;
     background: var(--primary);
     border-radius: 10px;
+    /* Adiciona uma pequena transição interna na barra */
+    transition: width 1s ease-in-out;
 }
 
 .mini-card {
@@ -263,13 +365,10 @@ body {
     font-size: 0.8rem;
 }
 
-/* =========================================
-   TRUST BAR
-   ========================================= */
 .trust {
     padding: 40px 0;
     background: #0000000c;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.158);
 }
 
 .trust-grid {
@@ -290,63 +389,6 @@ body {
     margin-right: 8px;
 }
 
-/* =========================================
-   RESULTADOS (VERSÃO COMPACTA)
-   ========================================= */
-.stats {
-    background: var(--white);
-    padding: 60px 0;
-    border-top: 1px solid #f1f5f9;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.stats h3 {
-    color: var(--text-light);
-    font-size: 1rem;
-    /* Título muito menor */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    font-weight: 700;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    text-align: center;
-}
-
-.stat-item {
-    border-right: 1px solid #f1f5f9;
-    /* Divisórias sutis */
-    padding: 10px;
-}
-
-.stat-item:last-child {
-    border-right: none;
-}
-
-.stat-item strong {
-    font-size: 2.2rem;
-    /* Reduzido de 3.5rem */
-    color: var(--primary);
-    /* Azul em vez de ciano no fundo claro */
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 800;
-}
-
-.stat-item span {
-    font-size: 0.85rem;
-    color: var(--text-main);
-    font-weight: 600;
-    text-transform: none;
-}
-
-/* =========================================
-   GRIDS (SOLUÇÕES E SERVIÇOS)
-   ========================================= */
 section {
     padding: 100px 0;
 }
@@ -359,119 +401,384 @@ h3 {
     font-weight: 800;
 }
 
+/* --- SEÇÃO DE SOLUÇÕES (SOLUTIONS) --- */
+.solutions {
+    padding: 100px 0;
+    margin-top: 80px;
+}
+
+.solutions-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza o bloco na horizontal */
+    text-align: center;
+    /* Centraliza as linhas de texto (especialmente com o <br>) */
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.solutions .section-subtitle {
+    display: block;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.solutions .section-title {
+    font-size: 3rem;
+    line-height: 1.1;
+    color: var(--secondary);
+    font-weight: 800;
+    max-width: 800px;
+}
+
+/* Grid de Cards */
 .solutions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
 }
 
+/* Estilização do Card de Solução */
 .solution-card {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
+    background: var(--white);
+    padding: 45px 35px;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
     transition: var(--transition);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    border: 2px solid #0707070e;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Mantém conteúdo do card à esquerda */
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.123);
 }
 
+/* Efeito de Destaque no Hover */
 .solution-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
+    border-color: var(--accent);
     box-shadow: var(--shadow);
-    border-color: var(--text-main);
 }
 
+/* Ícone da Solução */
 .card-icon {
-    font-size: 2rem;
-    color: var(--);
-    margin-bottom: 20px;
-    display: block;
+    font-size: 2.2rem;
+    color: var(--accent);
+    background: rgba(3, 160, 121, 0.08);
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    transition: var(--transition);
 }
 
+.solution-card:hover .card-icon {
+    background: var(--accent);
+    color: var(--white);
+    transform: rotate(-5deg) scale(1.1);
+}
+
+/* Título da Solução */
 .solution-card h4 {
+    font-size: 1.4rem;
+    color: var(--primary);
     margin-bottom: 15px;
-    font-size: 1.2rem;
-    color: var(--secondary);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Descrição da Solução */
+.solution-card p {
+    font-size: 0.95rem;
+    color: var(--primary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Pequeno detalhe decorativo no card (opcional) */
+.solution-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.solution-card:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .solutions {
+        padding: 70px 0;
+    }
+
+    .solutions h3 {
+        font-size: 2rem;
+    }
+
+    .solution-card {
+        padding: 35px 25px;
+    }
 }
 
 .services {
     padding: 100px 0;
-    background: #ffffff;
-    position: relative;
+    overflow: hidden;
+    background: transparent;
+    /* Garante que os shapes de fundo apareçam */
 }
 
+.services-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
 
-/* Fundo tipográfico técnico */
-.panel-background {
-    position: relative;
-    text-align: center;
-    justify-content: center;
-    top: -50px;
-    font-size: 7rem;
+.services-info {
+    flex: 1.4;
+}
+
+.section-subtitle {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 3.2rem;
     font-weight: 800;
-    letter-spacing: -3px;
-    color: #0707070e;
-    white-space: nowrap;
-    user-select: none;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 50px;
+    line-height: 1.2;
+}
+
+/* Grade de Serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.service-box {
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    border-radius: 24px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.123);
+}
+
+.service-box:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: var(--white);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.service-box i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    background: rgba(3, 160, 121, 0.1);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.service-box:hover i {
+    background: var(--accent);
+    color: white;
+    transform: rotate(-10deg);
+}
+
+.service-box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--secondary);
+    letter-spacing: -0.5px;
+}
+
+.service-box p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Visual Lateral */
+.services-visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Margem de segurança para a rotação não cortar */
+}
+
+.visual-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Define um limite para não estourar a lateral */
+    margin: 0 auto;
+}
+
+.visual-wrapper-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f1f5f9;
+    border-radius: 32px;
+    z-index: 1;
+    /* Rotação e deslocamento */
+    transform: rotate(6deg) translateX(15px) translateY(10px);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     pointer-events: none;
 }
 
-.panel-content {
+.performance-card {
     position: relative;
-    max-width: 720px;
-    padding-left: 40px;
+    z-index: 2;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.panel-content h2 {
-    font-size: 3.2rem;
-    line-height: 1.05;
-    margin-bottom: 28px;
-    color: var(--secondary);
+.performance-card::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 4px;
+    height: 100px;
+    background: var(--accent);
 }
 
-.panel-content .lead {
-    font-size: 1.35rem;
-    font-weight: 600;
-    margin-bottom: 40px;
+.progress-bar {
+    height: 12px;
+    background: #f1f5f9;
+    border-radius: 20px;
+    margin-top: 12px;
+    overflow: hidden;
+    position: relative;
 }
 
-.panel-content p {
-    font-size: 1.15rem;
-    line-height: 1.9;
-    margin-bottom: 26px;
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    /* Cor verde de destaque */
+    border-radius: 10px;
+    width: 0;
+    /* Começa em 0 para a animação */
+    animation: fillProgress 2s ease-out forwards;
 }
 
-
-.panel-content strong {
-    color: var(--primary);
-    font-weight: 700;
+/* Container das barras */
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    height: 150px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f1f5f9;
 }
 
-/* Responsivo */
+/* Estilo individual da barra */
+.chart-bars .bar {
+    width: 35px;
+    background: #e2e8f0;
+    border-radius: 8px 8px 0 0;
+    height: 0;
+    transition: height 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Barra de destaque (Verde) */
+.chart-bars .bar.highlight {
+    background: var(--accent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Badge de porcentagem que estava solto */
+.percentage-badge {
+    position: absolute;
+    top: 38%;
+    right: -10px;
+    background: var(--accent);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    z-index: 20;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fillProgress {
+    to {
+        width: 85%;
+    }
+
+    /* Ou o valor que você desejar para o gráfico */
+}
+
+/* Responsividade */
 @media (max-width: 992px) {
-    .services-panel {
-        padding: 80px 50px;
-        text-align: left;
+    .services-wrapper {
+        flex-direction: column;
+        gap: 60px;
     }
 
-    .panel-content {
-        padding-left: 0;
+    .services-grid {
+        grid-template-columns: 1fr;
     }
 
-    .panel-content::before {
-        display: none;
-    }
-
-    .panel-background {
-        font-size: 4.5rem;
-        right: -40px;
-        top: 20px;
+    .section-title {
+        font-size: 2.5rem;
     }
 }
 
-
-/* =========================================
-   PROCESS
-   ========================================= */
 .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -504,9 +811,6 @@ h3 {
     font-weight: 800;
 }
 
-/* =========================================
-   CONTATO
-   ========================================= */
 .contact-box {
     max-width: 600px;
     margin: 0 auto;
@@ -529,9 +833,6 @@ h3 {
     height: 120px;
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
 .site-footer {
     background: #0f172a;
     color: #94a3b8;
@@ -602,9 +903,7 @@ h3 {
     font-size: 0.85rem;
 }
 
-/* =========================================
-   ANIMATIONS
-   ========================================= */
+
 @keyframes float {
 
     0%,
@@ -627,9 +926,6 @@ h3 {
     }
 }
 
-/* =========================================
-   RESPONSIVIDADE
-   ========================================= */
 @media (max-width: 992px) {
     .hero-content {
         flex-direction: column;

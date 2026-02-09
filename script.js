@@ -1,19 +1,20 @@
 /* ======================================================
    LOCAL GROWTH – SCRIPT PRINCIPAL
-   Profissional • Leve • Escalável
 ====================================================== */
 
-/* =====================
-   HELPERS
-===================== */
 const $ = (el) => document.querySelector(el);
 const $$ = (el) => document.querySelectorAll(el);
 
 /* =====================
-   HEADER OFFSET (SCROLL)
+   HEADER & SCROLL
 ===================== */
-const header = document.querySelector(".site-header");
+const header = $(".site-header");
 const headerHeight = header ? header.offsetHeight : 80;
+
+window.addEventListener("scroll", () => {
+    if (!header) return;
+    window.scrollY > 20 ? header.classList.add("scrolled") : header.classList.remove("scrolled");
+});
 
 /* =====================
    SMOOTH SCROLL
@@ -21,147 +22,149 @@ const headerHeight = header ? header.offsetHeight : 80;
 $$('a[href^="#"]').forEach(link => {
     link.addEventListener("click", e => {
         const targetId = link.getAttribute("href");
-        const target = document.querySelector(targetId);
-
+        const target = $(targetId);
         if (!target) return;
-
         e.preventDefault();
-
         const offsetTop = target.offsetTop - headerHeight + 12;
-
-        window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth"
-        });
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
     });
 });
 
 /* =====================
-   HEADER SHADOW ON SCROLL
+   SCROLL ANIMATIONS (GERAL)
 ===================== */
-window.addEventListener("scroll", () => {
-    if (!header) return;
+// Adicionei uma verificação para evitar erros se a classe não existir no HTML
+const animatedItems = $$(".solution-card, .service-box, .stat-item, .process-steps li, .footer-col");
 
-    if (window.scrollY > 20) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-});
+const generalObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            generalObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+animatedItems.forEach(item => generalObserver.observe(item));
 
 /* =====================
-   SCROLL ANIMATIONS
+   CHART ANIMATION (GRÁFICO)
 ===================== */
-const animatedItems = document.querySelectorAll(
-    ".solution-card, .service-item, .stat-item, .process-steps li, .footer-col, .benefit-item"
-);
+const chartBars = $(".chart-bars");
 
-const observer = new IntersectionObserver(
-    entries => {
+if (chartBars) {
+    const chartObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add("animate");
-                observer.unobserve(entry.target);
+                const bars = entry.target.querySelectorAll('.bar');
+                bars.forEach((bar, index) => {
+                    const h = bar.getAttribute('data-height');
+                    // Garantindo que a altura seja aplicada com um pequeno delay escalonado
+                    setTimeout(() => {
+                        bar.style.height = h;
+                    }, index * 100);
+                });
+                chartObserver.unobserve(entry.target);
             }
         });
-    },
-    {
-        threshold: 0.15
-    }
-);
+    }, { threshold: 0.5 });
 
-animatedItems.forEach(item => observer.observe(item));
+    chartObserver.observe(chartBars);
+}
 
 /* =====================
-   WHATSAPP BUTTON
+   WHATSAPP & FORM UX
 ===================== */
-const whatsappButtons = document.querySelectorAll(".js-whatsapp");
-
-whatsappButtons.forEach(button => {
+$$(".js-whatsapp").forEach(button => {
     button.addEventListener("click", () => {
         const phone = "5515996514120";
-        const message =
-            button.dataset.message ||
-            "Olá! Vim pelo site e gostaria de saber mais sobre os serviços.";
-
-        const whatsappURL = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(
-            message
-        )}`;
-
-        window.open(whatsappURL, "_blank");
+        const message = button.dataset.message || "Olá! Vim pelo site.";
+        window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, "_blank");
     });
 });
 
-/* =====================
-   FORM UX FEEDBACK
-===================== */
-const form = document.querySelector(".contact-form");
-
+const form = $(".contact-form");
 if (form) {
     form.addEventListener("submit", e => {
         e.preventDefault();
+        const btn = form.querySelector("button");
+        const originalText = btn.textContent;
+        btn.textContent = "Enviando...";
 
-        form.classList.add("loading");
-
-        const button = form.querySelector("button");
-        const originalText = button.textContent;
-
-        button.textContent = "Enviando...";
-
+        // Simulação de envio
         setTimeout(() => {
-            form.classList.remove("loading");
-            button.textContent = originalText;
+            btn.textContent = originalText;
             form.reset();
-            alert("Mensagem enviada com sucesso! Em breve entraremos em contato.");
+            alert("Mensagem enviada com sucesso!");
         }, 1200);
     });
 }
 
 /* =====================
-   CTA PULSE (SUTIL)
+   FLOATING CARD SLIDER (HERO)
 ===================== */
-const primaryButtons = document.querySelectorAll(".btn-primary");
+const setupFloatingSlider = () => {
+    const card = $(".floating-card");
+    const dots = $$(".dot");
+    const slides = $$(".card-content");
+    let inactivityTimer;
 
-primaryButtons.forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-        btn.style.transform = "translateY(-2px)";
+    if (!card || dots.length === 0) return;
+
+    const setActiveSlide = (index) => {
+        clearTimeout(inactivityTimer);
+
+        slides.forEach((slide, i) => {
+            slide.style.animation = 'none';
+
+            // Força o estado visual para o slide selecionado
+            if (i === index) {
+                slide.style.opacity = "1";
+                slide.style.transform = "translateY(0)";
+                slide.style.pointerEvents = "auto";
+                slide.style.visibility = "visible";
+            } else {
+                slide.style.opacity = "0";
+                slide.style.transform = "translateY(-20px)";
+                slide.style.pointerEvents = "none";
+                slide.style.visibility = "hidden";
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            dot.style.animation = 'none';
+            dot.style.background = (i === index) ? "var(--primary)" : "#cbd5e1";
+            dot.style.transform = (i === index) ? "scale(1.3)" : "scale(1)";
+        });
+
+        // Retoma a animação automática do CSS após 5 segundos de inatividade
+        inactivityTimer = setTimeout(() => {
+            resumeAutoAnimation();
+        }, 5000);
+    };
+
+    const resumeAutoAnimation = () => {
+        slides.forEach(slide => {
+            slide.style.animation = "";
+            slide.style.opacity = "";
+            slide.style.transform = "";
+            slide.style.visibility = "";
+        });
+        dots.forEach(dot => {
+            dot.style.animation = "";
+            dot.style.background = "";
+            dot.style.transform = "";
+        });
+    };
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => setActiveSlide(index));
     });
 
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "translateY(0)";
+    // Resetar animação se o usuário trocar de aba e voltar
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) resumeAutoAnimation();
     });
-});
+};
 
-/* =====================
-   OPTIONAL: MOBILE MENU
-   (pronto para ativar)
-===================== */
-// const menuToggle = document.querySelector(".menu-toggle");
-// const nav = document.querySelector(".main-nav");
-
-// if (menuToggle && nav) {
-//     menuToggle.addEventListener("click", () => {
-//         nav.classList.toggle("open");
-//         menuToggle.classList.toggle("active");
-//     });
-// }
-
-/* =====================
-   CSS NECESSÁRIO
-===================== */
-/*
-Adicionar no CSS:
-
-.animate {
-    animation: fadeUp 0.8s ease forwards;
-}
-
-.site-header.scrolled {
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-}
-
-.contact-form.loading button {
-    opacity: 0.6;
-    pointer-events: none;
-}
-*/
+setupFloatingSlider();

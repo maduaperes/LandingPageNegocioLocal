@@ -50,19 +50,40 @@
             </div>
 
             <div class="hero-visual">
-                <div class="graphic-shape"></div>
+                <div class="floating-card-bg"></div>
                 <div class="floating-card">
                     <div class="card-header">
-                        <div class="dot blue"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+                        <div class="dot" id="dot-1"></div>
+                        <div class="dot" id="dot-2"></div>
+                        <div class="dot" id="dot-3"></div>
                     </div>
-                    <span class="card-label">Crescimento Local</span>
-                    <span class="card-stats">+120%</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
+
+                    <div class="card-content slide-1">
+                        <span class="card-label">Crescimento Local</span>
+                        <span class="card-stats">+120%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%;"></div>
+                        </div>
+                        <p>Performance Mensal Otimizada</p>
                     </div>
-                    <p style="font-size: 0.7rem; margin-top: 10px; color: #94a3b8;">Performance Mensal Otimizada</p>
+
+                    <div class="card-content slide-2">
+                        <span class="card-label">Análise de Dados</span>
+                        <span class="card-stats">+94%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 94%; background: var(--accent);"></div>
+                        </div>
+                        <p>Conversão em Tempo Real</p>
+                    </div>
+
+                    <div class="card-content slide-3">
+                        <span class="card-label">Novos Leads</span>
+                        <span class="card-stats">+450</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                        <p>Expansão de Base Semanal</p>
+                    </div>
                 </div>
                 <div class="mini-card">
                     <i class="fas fa-users" style="color: var(--primary);"></i>
@@ -83,12 +104,12 @@
 
     <section id="solutions" class="solutions">
         <div class="container">
-            <h3>Soluções Pensadas para Crescimento Local</h3>
-            <p class="section-description"
-                style="text-align: center; max-width: 700px; margin: -30px auto 50px; color: var(--text-light);">
-                Não criamos apenas presença online. Construímos sistemas digitais
-                que trabalham para o seu negócio todos os dias.
-            </p>
+            <div class="solutions-header">
+                <span class="section-subtitle">Foco em Performance</span>
+                <h2 class="section-title">
+                    Soluções Pensadas <br> para <strong>Crescimento Local</strong>
+                </h2>
+            </div>
 
             <div class="solutions-grid">
                 <div class="solution-card">
@@ -119,84 +140,57 @@
     </section>
 
     <section id="services" class="services">
-        <div class="container services-panel">
-
-            <div class="panel-background">
-                <span>Digital Performance</span>
-            </div>
-
-            <div class="panel-content">
-                <h2>Excelência em Crescimento Digital</h2>
-
-                <p class="lead">
-                    Crescimento digital não é sobre presença.
-                    É sobre sistemas bem projetados.
-                    Nossa abordagem une a precisão técnica das
-                    <strong>Landing Pages de Alta Conversão</strong> com a solidez de
-                    <strong>Sites Institucionais Profissionais</strong>, criando uma
-                    jornada digital completa e orientada a resultado.
-                    Desenvolvemos uma <strong>estratégia digital local</strong>
-                    integrada, posicionando sua marca onde o público realmente
-                    toma decisões, com foco absoluto em conversão e autoridade.
-                    Através de um processo contínuo de
-                    <strong>Otimização para Conversão (CRO)</strong>, refinamos cada
-                    detalhe da interface para transformar tráfego em faturamento
-                    real e crescimento sustentável.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-
-    <section id="cases" class="stats">
         <div class="container">
-            <div class="stats-header">
-                <span class="badge" style="background: rgba(255,255,255,0.1); color: var(--accent);">Data-Driven</span>
-                <h3>Resultados que Impulsionam Negócios</h3>
-                <p>Nossos projetos são pautados em dados reais e crescimento mensurável.</p>
-            </div>
+            <div class="services-wrapper">
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="stat-value">+120%</div>
-                    <div class="stat-title">Conversões Médias</div>
-                    <p>Aumento no volume de leads qualificados gerados via canais digitais.</p>
-                    <div class="stat-bar">
-                        <div class="stat-progress" style="width: 85%;"></div>
+                <div class="services-info">
+                    <span class="section-subtitle">O que entregamos</span>
+                    <h2 class="section-title">Soluções de <strong>Alta Performance</strong></h2>
+
+                    <div class="services-grid">
+                        <div class="service-box">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Landing Pages</h3>
+                            <p>Páginas focadas 100% em conversão e vendas diretas.</p>
+                        </div>
+                        <div class="service-box">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Otimização CRO</h3>
+                            <p>Refinamos cada clique para maximizar seu faturamento.</p>
+                        </div>
+                        <div class="service-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>SEO Local</h3>
+                            <p>Sua empresa no topo quando o cliente busca perto dele.</p>
+                        </div>
+                        <div class="service-box">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>Sites Premium</h3>
+                            <p>Institucionais robustos que geram autoridade imediata.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-eye"></i></div>
-                    <div class="stat-value">3x</div>
-                    <div class="stat-title">Alcance Local</div>
-                    <p>Expansão da visibilidade da marca para o público específico da região.</p>
-                    <div class="stat-bar">
-                        <div class="stat-progress" style="width: 95%;"></div>
+                <div class="services-visual">
+                    <div class="visual-wrapper-bg"></div>
+                    <div class="visual-wrapper">
+                        <div class="percentage-badge">+94%</div>
+
+                        <div class="performance-card">
+                            <h4>Análise de Dados</h4>
+                            <p>Crescimento em tempo real</p>
+                            <div class="chart-bars">
+                                <div class="bar" data-height="30%"></div>
+                                <div class="bar highlight" data-height="60%"></div>
+                                <div class="bar" data-height="45%"></div>
+                                <div class="bar highlight" data-height="85%"></div>
+                                <div class="bar" data-height="50%"></div>
+                                <div class="bar highlight" data-height="100%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
-                    <div class="stat-value">+90%</div>
-                    <div class="stat-title">Retenção de Clientes</div>
-                    <p>Melhoria no engajamento e fidelização através de presença digital sólida.</p>
-                    <div class="stat-bar">
-                        <div class="stat-progress" style="width: 75%;"></div>
-                    </div>
-                </div>
-
-                <div class="stat-card highlight">
-                    <div class="stat-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="stat-value">ROI</div>
-                    <div class="stat-title">Foco em Retorno</div>
-                    <p>Cada centavo investido é otimizado para gerar lucro real ao negócio.</p>
-                    <div class="stat-bar">
-                        <div class="stat-progress" style="width: 100%;"></div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -297,6 +291,7 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
