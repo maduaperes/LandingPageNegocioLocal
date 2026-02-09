@@ -1,195 +1,255 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Pro | Soluções Locais</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="A Local Growth ajuda negócios locais a crescer com estratégia digital, presença online, tráfego qualificado e conversão." />
+    <title>Local Growth | Crescimento Digital para Negócios Locais</title>
 
-    <link rel="icon" href="data:,">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
 
-    <header id="main-header">
-        <nav class="container">
-            <div class="logo">BUSINESS<span>PRO</span></div>
-            <ul class="nav-links" id="nav-menu">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#contact" class="btn-sm">Orçamento</a></li>
-            </ul>
-            <div class="mobile-menu" id="mobile-menu" role="button" aria-label="Abrir Menu">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+    <header class="site-header">
+        <div class="container header-flex">
+            <div class="logo">
+                <a href="#home" style="text-decoration: none; color: inherit;">
+                    <h1>Local Growth</h1>
+                    <span>Crescimento Digital Estratégico</span>
+                </a>
             </div>
-        </nav>
+
+            <nav class="main-nav">
+                <a href="#solutions">Soluções</a>
+                <a href="#services">Serviços</a>
+                <a href="#process">Processo</a>
+                <a href="#cases">Resultados</a>
+                <a href="#contact" class="nav-cta">Contato</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="legal-alert-bar">
-        <span><strong>AVISO:</strong> Imagens e textos são meramente ilustrativos. Este é um modelo de demonstração que
-            será totalmente
-            adaptado.</span>
-    </div>
-
     <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <span class="badge hero-animate delay-1">Líder em Qualidade na Região</span>
-                <h1 class="hero-animate delay-2">
-                    Transforme seu negócio com <span>especialistas.</span>
-                </h1>
-                <p class="hero-animate delay-3">
-                    Soluções sob medida para empresas que buscam crescimento sólido e presença profissional no mercado
-                    local.
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">Especialistas em Negócios Locais</span>
+                <h2>Transformamos Negócios Locais em Referência Digital</h2>
+                <p>
+                    Ajudamos empresas locais a atrair mais clientes, aumentar autoridade
+                    e gerar crescimento previsível através de estratégia digital e conversão.
                 </p>
-                <div class="hero-btns hero-animate delay-4">
-                    <a href="#contact" class="btn-primary">Solicitar Orçamento</a>
-                    <a href="#services" class="btn-secondary">Conhecer Serviços</a>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">Quero crescer meu negócio</a>
+                    <a href="#services" class="btn-secondary">Conhecer as soluções</a>
                 </div>
             </div>
 
+            <div class="hero-visual">
+                <div class="graphic-shape"></div>
+                <div class="floating-card">
+                    <div class="card-header">
+                        <div class="dot blue"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <span class="card-label">Crescimento Local</span>
+                    <span class="card-stats">+120%</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p style="font-size: 0.7rem; margin-top: 10px; color: #94a3b8;">Performance Mensal Otimizada</p>
+                </div>
+                <div class="mini-card">
+                    <i class="fas fa-users" style="color: var(--primary);"></i>
+                    <span>Novos Leads</span>
+                </div>
+            </div>
         </div>
-        <div class="hero-shape"></div>
+    </section>
+
+    <section class="trust">
+        <div class="container trust-grid">
+            <div><i class="fas fa-check-circle"></i> Estratégia Local</div>
+            <div><i class="fas fa-check-circle"></i> Foco em Conversão</div>
+            <div><i class="fas fa-check-circle"></i> Resultados Mensuráveis</div>
+            <div><i class="fas fa-check-circle"></i> Atendimento Consultivo</div>
+        </div>
+    </section>
+
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <h3>Soluções Pensadas para Crescimento Local</h3>
+            <p class="section-description"
+                style="text-align: center; max-width: 700px; margin: -30px auto 50px; color: var(--text-light);">
+                Não criamos apenas presença online. Construímos sistemas digitais
+                que trabalham para o seu negócio todos os dias.
+            </p>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <i class="fas fa-laptop-code card-icon"></i>
+                    <h4>Presença Digital Profissional</h4>
+                    <p>Construção de sites e páginas que representam seu negócio com credibilidade e autoridade.</p>
+                </div>
+
+                <div class="solution-card">
+                    <i class="fas fa-map-marker-alt card-icon"></i>
+                    <h4>Aquisição de Clientes Locais</h4>
+                    <p>Estratégias para atrair pessoas que realmente estão buscando seus serviços na sua região.</p>
+                </div>
+
+                <div class="solution-card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h4>Conversão e Performance</h4>
+                    <p>Estruturas pensadas para transformar visitantes em contatos, orçamentos e vendas.</p>
+                </div>
+
+                <div class="solution-card">
+                    <i class="fas fa-award card-icon"></i>
+                    <h4>Posicionamento e Autoridade</h4>
+                    <p>Comunicação estratégica que diferencia sua marca dos concorrentes locais.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="services" class="services">
-        <div class="container">
-            <div class="section-title reveal fade-up">
-                <h2>Nossas Especialidades</h2>
-                <p>Oferecemos o que há de mais moderno em atendimento e execução técnica.</p>
+        <div class="container services-panel">
+
+            <div class="panel-background">
+                <span>Digital Performance</span>
             </div>
-            <div class="services-grid">
-                <div class="service-card reveal delay-1">
-                    <div class="icon-box">01</div>
-                    <h3>Consultoria Estratégica</h3>
-                    <p>Planejamento focado em resultados reais para o seu nicho de atuação.</p>
+
+            <div class="panel-content">
+                <h2>Excelência em Crescimento Digital</h2>
+
+                <p class="lead">
+                    Crescimento digital não é sobre presença.
+                    É sobre sistemas bem projetados.
+                    Nossa abordagem une a precisão técnica das
+                    <strong>Landing Pages de Alta Conversão</strong> com a solidez de
+                    <strong>Sites Institucionais Profissionais</strong>, criando uma
+                    jornada digital completa e orientada a resultado.
+                    Desenvolvemos uma <strong>estratégia digital local</strong>
+                    integrada, posicionando sua marca onde o público realmente
+                    toma decisões, com foco absoluto em conversão e autoridade.
+                    Através de um processo contínuo de
+                    <strong>Otimização para Conversão (CRO)</strong>, refinamos cada
+                    detalhe da interface para transformar tráfego em faturamento
+                    real e crescimento sustentável.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="cases" class="stats">
+        <div class="container">
+            <div class="stats-header">
+                <span class="badge" style="background: rgba(255,255,255,0.1); color: var(--accent);">Data-Driven</span>
+                <h3>Resultados que Impulsionam Negócios</h3>
+                <p>Nossos projetos são pautados em dados reais e crescimento mensurável.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-value">+120%</div>
+                    <div class="stat-title">Conversões Médias</div>
+                    <p>Aumento no volume de leads qualificados gerados via canais digitais.</p>
+                    <div class="stat-bar">
+                        <div class="stat-progress" style="width: 85%;"></div>
+                    </div>
                 </div>
-                <div class="service-card reveal fade-up delay-2">
-                    <div class="icon-box">02</div>
-                    <h3>Gestão de Processos</h3>
-                    <p>Otimização de tempo e recursos para aumentar a sua produtividade.</p>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                    <div class="stat-value">3x</div>
+                    <div class="stat-title">Alcance Local</div>
+                    <p>Expansão da visibilidade da marca para o público específico da região.</p>
+                    <div class="stat-bar">
+                        <div class="stat-progress" style="width: 95%;"></div>
+                    </div>
                 </div>
-                <div class="service-card reveal fade-up delay-3">
-                    <div class="icon-box">03</div>
-                    <h3>Suporte Premium</h3>
-                    <p>Acompanhamento dedicado e humanizado em todas as etapas.</p>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="stat-value">+90%</div>
+                    <div class="stat-title">Retenção de Clientes</div>
+                    <p>Melhoria no engajamento e fidelização através de presença digital sólida.</p>
+                    <div class="stat-bar">
+                        <div class="stat-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="stat-card highlight">
+                    <div class="stat-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="stat-value">ROI</div>
+                    <div class="stat-title">Foco em Retorno</div>
+                    <p>Cada centavo investido é otimizado para gerar lucro real ao negócio.</p>
+                    <div class="stat-bar">
+                        <div class="stat-progress" style="width: 100%;"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="process" class="process">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-image reveal scale-in">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
-                        alt="Equipe Profissional">
-                    <span class="img-caption">*Representação
-                        ilustrativa.</span>
-                    <div class="experience-badge">
-                        <span class="number">10+</span>
-                        <span class="text">Anos de<br>Experiência</span>
-                    </div>
-                </div>
-                <div class="about-content reveal fade-up delay-1">
-                    <span class="badge">Quem Somos</span>
-                    <h2>Compromisso com a <span class="highlight">Excelência</span> e Transparência.</h2>
-                    <p>Fundada com o objetivo de elevar o padrão de serviços na região, nossa empresa se destaca pelo
-                        atendimento personalizado e soluções técnicas de alta precisão.</p>
-                    <div class="about-features">
-                        <div class="feature-item reveal fade-up delay-2">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Profissionais Certificados</h4>
-                                <p>Equipe treinada e atualizada com as melhores práticas do mercado.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Atendimento Local</h4>
-                                <p>Presença física e suporte ágil para toda a região metropolitana.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn-secondary">Falar com um Especialista</a>
-                </div>
-            </div>
+            <h3>Nosso Processo de Trabalho</h3>
+            <ol class="process-steps">
+                <li>
+                    <strong>Diagnóstico</strong>
+                    <p>Análise do negócio, público e concorrência local.</p>
+                </li>
+                <li>
+                    <strong>Estratégia</strong>
+                    <p>Definição clara de objetivos, mensagem e estrutura.</p>
+                </li>
+                <li>
+                    <strong>Implementação</strong>
+                    <p>Criação das páginas, conteúdo e estrutura digital.</p>
+                </li>
+                <li>
+                    <strong>Otimização</strong>
+                    <p>Ajustes focados em conversão e performance.</p>
+                </li>
+            </ol>
         </div>
     </section>
 
     <section id="contact" class="contact">
         <div class="container">
-            <div class="contact-wrapper reveal fade-up">
-
-                <div class="contact-header">
-                    <h2>Vamos conversar?</h2>
-                    <p>Preencha os dados e nossa equipe retornará em até 24h úteis.</p>
-
-                    <div class="contact-infos">
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Av. Paulista, 1234 - Bela Vista, SP</span>
-                            <small> (Fictício)</small>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>mariaeduardaaperes@hotmail.com</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-phone"></i>
-                            <span>(15) 99651-4129</span>
-                        </div>
-                    </div>
-                </div>
-
-                <form id="contact-form" class="main-form">
-                    <input type="text" id="form-nome" placeholder="Seu Nome" required>
-                    <input type="email" id="form-email" placeholder="E-mail Profissional" required>
-                    <textarea id="form-mensagem" placeholder="Como podemos ajudar seu negócio?"></textarea>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="lgpd-check" required>
-                        <label for="lgpd-check">
-                            Li e aceito a <a href="politica.html" target="_blank">Política de Privacidade</a>.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        Enviar via WhatsApp
-                    </button>
+            <div class="contact-box">
+                <h3>Entre em Contato</h3>
+                <p>Vamos entender seu negócio e construir a melhor estratégia.</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="Seu nome" required />
+                    <input type="email" placeholder="Seu e-mail" required />
+                    <input type="text" placeholder="Nome do negócio" />
+                    <textarea placeholder="Conte um pouco sobre seu negócio"></textarea>
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Enviar
+                        contato</button>
                 </form>
-
             </div>
         </div>
     </section>
-
-
-    <div id="cookie-consent" class="cookie-banner">
-        <p>Utilizamos cookies para personalizar sua experiência. Ao continuar, você concorda com nossas diretrizes.</p>
-        <button id="accept-cookies">Aceitar e Fechar</button>
-    </div>
-
-    <a href="https://api.whatsapp.com/send?phone=5515996514120" class="whatsapp-float" target="_blank"
-        rel="noopener noreferrer" title="Iniciar atendimento via WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <footer class="site-footer">
         <div class="footer-cta container">
             <div class="cta-text">
                 <h3>Pronto para elevar o nível do seu negócio?</h3>
-                <p>Junte-se a centenas de empresas que confiam em nosso trabalho.</p>
+                <p>Junte-se a empresas que confiam em nosso trabalho estratégico.</p>
             </div>
-            <a class="btn-primary js-whatsapp"
-                data-message="Olá! Vim pelo site e gostaria de entender melhor como você pode ajudar meu negócio.">
+            <a href="https://api.whatsapp.com/send?phone=5515996514120" class="btn-primary"
+                style="background: white; color: var(--primary);">
                 Falar com Consultor
             </a>
         </div>
@@ -197,17 +257,12 @@
         <div class="footer-main container">
             <div class="footer-grid">
                 <div class="footer-col branding">
-                    <div class="logo">BUSINESS<span>PRO</span></div>
-                    <p class="description">Excelência em soluções profissionais para o mercado local. Transparência,
-                        inovação e resultados sólidos.</p>
+                    <div class="logo" style="color: white;">LOCAL<span style="color: var(--accent);">GROWTH</span></div>
+                    <p>Excelência em soluções profissionais para o mercado local.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><i
-                                class="fab fa-linkedin"></i></a>
-                        <a href="https://api.whatsapp.com/send?phone=5515996514120" aria-label="WhatsApp"
-                            target="_blank" rel="noopener" title="Iniciar atendimento via WhatsApp"><i
-                                class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=5515996514120"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -216,7 +271,6 @@
                     <ul>
                         <li><a href="#home">Início</a></li>
                         <li><a href="#services">Serviços</a></li>
-                        <li><a href="#about">Sobre Nós</a></li>
                         <li><a href="#contact">Orçamentos</a></li>
                     </ul>
                 </div>
@@ -224,42 +278,25 @@
                 <div class="footer-col">
                     <h4>Jurídico</h4>
                     <ul>
-                        <li><a href="politica.html">Termos de Uso</a></li>
-                        <li><a href="politica.html">Política de Privacidade</a></li>
-                        <li><a href="politica.html">Gestão de Dados</a></li>
-                        <li><a href="politica.html">Compliance</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Compliance</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h4>Contato Direto</h4>
-                    <p><i class="fas fa-phone"></i> (15) 99651-4120</p>
-                    <p><i class="fas fa-envelope"></i> mariaeduardaaperes@hotmail.com</p>
-                    <div class="fiscal-info">
-                        <p><strong>Razão Social:</strong> Business Pro Soluções Ltda <small>(Fictício)</small></p>
-                        <p><strong>CNPJ:</strong> 00.000.000/0001-00 <small>(Fictício)</small></p>
-                        <p><strong>Endereço:</strong> Av. Paulista, 1234 - Centro, SP<small> (Fictício)</small></p>
-                    </div>
+                    <h4>Contato</h4>
+                    <p>(15) 99651-4120</p>
+                    <p>mariaeduardaaperes@hotmail.com</p>
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <div class="container bottom-flex">
-                <p>Imagens e textos são meramente ilustrativos. Este é um modelo de demonstração que será totalmente
-                    adaptado.</p>
-                <p>&copy; 2026 Business Pro. Todos os direitos reservados.</p>
-                <div class="payment-methods">
-                    <span class="text-xs">Pagamento:</span>
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-pix"></i>
-                </div>
+            <div class="container" style="text-align: center;">
+                <p>© 2026 Local Growth. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 
 </html>

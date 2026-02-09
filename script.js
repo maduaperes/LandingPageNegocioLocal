@@ -1,174 +1,167 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* ======================================================
+   LOCAL GROWTH – SCRIPT PRINCIPAL
+   Profissional • Leve • Escalável
+====================================================== */
 
-    /* ===============================
-       CONFIGURAÇÃO CENTRAL
-    =============================== */
-    const telefoneDono = "5515996514120";
+/* =====================
+   HELPERS
+===================== */
+const $ = (el) => document.querySelector(el);
+const $$ = (el) => document.querySelectorAll(el);
 
-    function gerarLinkWhats(message = "") {
-        const texto = encodeURIComponent(message);
-        return `https://wa.me/${telefoneDono}${texto ? `?text=${texto}` : ""}`;
-    }
+/* =====================
+   HEADER OFFSET (SCROLL)
+===================== */
+const header = document.querySelector(".site-header");
+const headerHeight = header ? header.offsetHeight : 80;
 
-    /* ===============================
-       1. HEADER SCROLL
-    =============================== */
-    const header = document.getElementById('main-header');
+/* =====================
+   SMOOTH SCROLL
+===================== */
+$$('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", e => {
+        const targetId = link.getAttribute("href");
+        const target = document.querySelector(targetId);
 
-    if (header) {
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
+        if (!target) return;
+
+        e.preventDefault();
+
+        const offsetTop = target.offsetTop - headerHeight + 12;
+
+        window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
         });
-    }
-
-    /* ===============================
-       2. MENU MOBILE
-    =============================== */
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    if (mobileMenu && navMenu) {
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.style.overflow =
-                navMenu.classList.contains('active') ? 'hidden' : 'initial';
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = 'initial';
-            });
-        });
-    }
-
-    /* ===============================
-       3. COOKIES (LGPD)
-    =============================== */
-    const cookieBanner = document.getElementById('cookie-consent');
-    const acceptBtn = document.getElementById('accept-cookies');
-
-    if (cookieBanner && !localStorage.getItem('business_pro_cookies')) {
-        setTimeout(() => {
-            cookieBanner.style.display = 'flex';
-        }, 2000);
-    }
-
-    if (acceptBtn) {
-        acceptBtn.addEventListener('click', () => {
-            localStorage.setItem('business_pro_cookies', 'true');
-            cookieBanner.style.opacity = '0';
-            setTimeout(() => cookieBanner.style.display = 'none', 400);
-        });
-    }
-
-    /* ===============================
-       4. FORMULÁRIO → WHATSAPP
-    =============================== */
-    const form = document.getElementById('contact-form');
-
-    if (form) {
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            const nome = document.getElementById('form-nome').value;
-            const email = document.getElementById('form-email').value;
-            const mensagem = document.getElementById('form-mensagem').value;
-            const lgpdCheck = document.getElementById('lgpd-check');
-
-            if (!lgpdCheck.checked) {
-                alert("Por favor, aceite os termos da LGPD para continuar.");
-                return;
-            }
-
-            const btn = form.querySelector('.btn-submit');
-            const originalText = btn.innerText;
-
-            btn.innerText = 'Redirecionando...';
-            btn.disabled = true;
-
-            const textoMensagem =
-                `*Novo Orçamento - Business Pro*\n\n` +
-                `*Nome:* ${nome}\n` +
-                `*E-mail:* ${email}\n` +
-                `*Mensagem:* ${mensagem}\n\n` +
-                `_O cliente aceitou a Política de Privacidade (LGPD)._`;
-
-            setTimeout(() => {
-                window.open(gerarLinkWhats(textoMensagem), '_blank');
-                form.reset();
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }, 700);
-        });
-    }
-
-    /* ===============================
-       5. BOTÕES DE WHATSAPP (CTA / FOOTER)
-       use data-message no HTML
-    =============================== */
-    document.querySelectorAll('.js-whatsapp').forEach(link => {
-        const message =
-            link.dataset.message ||
-            "Olá! Vim pelo site e gostaria de entender melhor como você pode ajudar meu negócio.";
-
-        link.setAttribute('href', gerarLinkWhats(message));
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener');
     });
+});
 
-    /* ===============================
-       6. ANIMAÇÃO HERO
-    =============================== */
-    document.querySelectorAll('.hero-animate').forEach((el, i) => {
-        setTimeout(() => el.classList.add('show'), 200 + i * 150);
-    });
+/* =====================
+   HEADER SHADOW ON SCROLL
+===================== */
+window.addEventListener("scroll", () => {
+    if (!header) return;
 
-    /* ===============================
-       7. REVEAL SCROLL
-    =============================== */
-    const revealObserver = new IntersectionObserver(entries => {
+    if (window.scrollY > 20) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
+
+/* =====================
+   SCROLL ANIMATIONS
+===================== */
+const animatedItems = document.querySelectorAll(
+    ".solution-card, .service-item, .stat-item, .process-steps li, .footer-col, .benefit-item"
+);
+
+const observer = new IntersectionObserver(
+    entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                revealObserver.unobserve(entry.target);
+                entry.target.classList.add("animate");
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el =>
-        revealObserver.observe(el)
-    );
-
-    /* ===============================
-       8. SIMULA HOVER NOS CARDS MOBILE
-    =============================== */
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-        const serviceCards = document.querySelectorAll('.service-card');
-
-        serviceCards.forEach(card => {
-            card.addEventListener('click', e => {
-                e.stopPropagation(); // previne click no body
-
-                // Remove hover dos outros cards
-                serviceCards.forEach(c => {
-                    if (c !== card) c.classList.remove('hover');
-                });
-
-                // Alterna hover no card clicado
-                card.classList.toggle('hover');
-            });
-        });
-
-        // Remove hover ao clicar fora
-        document.body.addEventListener('click', () => {
-            serviceCards.forEach(card => card.classList.remove('hover'));
-        });
+    },
+    {
+        threshold: 0.15
     }
+);
 
+animatedItems.forEach(item => observer.observe(item));
+
+/* =====================
+   WHATSAPP BUTTON
+===================== */
+const whatsappButtons = document.querySelectorAll(".js-whatsapp");
+
+whatsappButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const phone = "5515996514120";
+        const message =
+            button.dataset.message ||
+            "Olá! Vim pelo site e gostaria de saber mais sobre os serviços.";
+
+        const whatsappURL = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(
+            message
+        )}`;
+
+        window.open(whatsappURL, "_blank");
+    });
 });
+
+/* =====================
+   FORM UX FEEDBACK
+===================== */
+const form = document.querySelector(".contact-form");
+
+if (form) {
+    form.addEventListener("submit", e => {
+        e.preventDefault();
+
+        form.classList.add("loading");
+
+        const button = form.querySelector("button");
+        const originalText = button.textContent;
+
+        button.textContent = "Enviando...";
+
+        setTimeout(() => {
+            form.classList.remove("loading");
+            button.textContent = originalText;
+            form.reset();
+            alert("Mensagem enviada com sucesso! Em breve entraremos em contato.");
+        }, 1200);
+    });
+}
+
+/* =====================
+   CTA PULSE (SUTIL)
+===================== */
+const primaryButtons = document.querySelectorAll(".btn-primary");
+
+primaryButtons.forEach(btn => {
+    btn.addEventListener("mouseenter", () => {
+        btn.style.transform = "translateY(-2px)";
+    });
+
+    btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "translateY(0)";
+    });
+});
+
+/* =====================
+   OPTIONAL: MOBILE MENU
+   (pronto para ativar)
+===================== */
+// const menuToggle = document.querySelector(".menu-toggle");
+// const nav = document.querySelector(".main-nav");
+
+// if (menuToggle && nav) {
+//     menuToggle.addEventListener("click", () => {
+//         nav.classList.toggle("open");
+//         menuToggle.classList.toggle("active");
+//     });
+// }
+
+/* =====================
+   CSS NECESSÁRIO
+===================== */
+/*
+Adicionar no CSS:
+
+.animate {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.site-header.scrolled {
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.contact-form.loading button {
+    opacity: 0.6;
+    pointer-events: none;
+}
+*/
