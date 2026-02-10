@@ -9,12 +9,34 @@ const $$ = (el) => document.querySelectorAll(el);
    HEADER & SCROLL
 ===================== */
 const header = $(".site-header");
-const headerHeight = header ? header.offsetHeight : 80;
+let headerHeight = header ? header.offsetHeight : 80;
 
 window.addEventListener("scroll", () => {
     if (!header) return;
-    window.scrollY > 20 ? header.classList.add("scrolled") : header.classList.remove("scrolled");
+    window.scrollY > 20
+        ? header.classList.add("scrolled")
+        : header.classList.remove("scrolled");
 });
+
+window.addEventListener("resize", () => {
+    headerHeight = header ? header.offsetHeight : 80;
+});
+
+/* =====================
+   MOBILE NAV / HAMBURGER
+===================== */
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.querySelector('.mobile-nav');
+
+if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        hamburger.classList.toggle('active'); // animação do X
+
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+    });
+}
 
 /* =====================
    SMOOTH SCROLL
@@ -25,15 +47,28 @@ $$('a[href^="#"]').forEach(link => {
         const target = $(targetId);
         if (!target) return;
         e.preventDefault();
-        const offsetTop = target.offsetTop - headerHeight + 12;
+
+        // Atualiza headerHeight antes do scroll
+        headerHeight = header ? header.offsetHeight : 80;
+
+        // Usa getBoundingClientRect para cálculo mais preciso
+        const rect = target.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const offsetTop = rect.top + scrollTop - headerHeight - 10; // margem extra
+
         window.scrollTo({ top: offsetTop, behavior: "smooth" });
+
+        // Fecha menu mobile ao clicar
+        if (mobileNav && mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+            if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+        }
     });
 });
 
 /* =====================
    SCROLL ANIMATIONS (GERAL)
 ===================== */
-// Adicionei uma verificação para evitar erros se a classe não existir no HTML
 const animatedItems = $$(".solution-card, .service-box, .stat-item, .process-steps li, .footer-col");
 
 const generalObserver = new IntersectionObserver(entries => {
@@ -59,7 +94,6 @@ if (chartBars) {
                 const bars = entry.target.querySelectorAll('.bar');
                 bars.forEach((bar, index) => {
                     const h = bar.getAttribute('data-height');
-                    // Garantindo que a altura seja aplicada com um pequeno delay escalonado
                     setTimeout(() => {
                         bar.style.height = h;
                     }, index * 100);
@@ -107,7 +141,7 @@ const setupFloatingSlider = () => {
     const card = $(".floating-card");
     const dots = $$(".dot");
     const slides = $$(".card-content");
-    let inactivityTimer;
+    let inactivityTimer = null;
 
     if (!card || dots.length === 0) return;
 
@@ -115,29 +149,21 @@ const setupFloatingSlider = () => {
         clearTimeout(inactivityTimer);
 
         slides.forEach((slide, i) => {
-            slide.style.animation = 'none';
-
-            // Força o estado visual para o slide selecionado
             if (i === index) {
-                slide.style.opacity = "1";
-                slide.style.transform = "translateY(0)";
-                slide.style.pointerEvents = "auto";
-                slide.style.visibility = "visible";
+                slide.classList.add("active-slide");
             } else {
-                slide.style.opacity = "0";
-                slide.style.transform = "translateY(-20px)";
-                slide.style.pointerEvents = "none";
-                slide.style.visibility = "hidden";
+                slide.classList.remove("active-slide");
             }
         });
 
         dots.forEach((dot, i) => {
-            dot.style.animation = 'none';
-            dot.style.background = (i === index) ? "var(--primary)" : "#cbd5e1";
-            dot.style.transform = (i === index) ? "scale(1.3)" : "scale(1)";
+            if (i === index) {
+                dot.classList.add("active-dot");
+            } else {
+                dot.classList.remove("active-dot");
+            }
         });
 
-        // Retoma a animação automática do CSS após 5 segundos de inatividade
         inactivityTimer = setTimeout(() => {
             resumeAutoAnimation();
         }, 5000);
@@ -145,15 +171,10 @@ const setupFloatingSlider = () => {
 
     const resumeAutoAnimation = () => {
         slides.forEach(slide => {
-            slide.style.animation = "";
-            slide.style.opacity = "";
-            slide.style.transform = "";
-            slide.style.visibility = "";
+            slide.classList.remove("active-slide");
         });
         dots.forEach(dot => {
-            dot.style.animation = "";
-            dot.style.background = "";
-            dot.style.transform = "";
+            dot.classList.remove("active-dot");
         });
     };
 
@@ -161,7 +182,6 @@ const setupFloatingSlider = () => {
         dot.addEventListener("click", () => setActiveSlide(index));
     });
 
-    // Resetar animação se o usuário trocar de aba e voltar
     document.addEventListener("visibilitychange", () => {
         if (!document.hidden) resumeAutoAnimation();
     });

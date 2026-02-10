@@ -17,6 +17,7 @@
 
     <header class="site-header">
         <div class="container header-flex">
+            <!-- Logo -->
             <div class="logo">
                 <a href="#home" style="text-decoration: none; color: inherit;">
                     <h1>Local Growth</h1>
@@ -24,14 +25,33 @@
                 </a>
             </div>
 
+            <!-- Menu desktop -->
             <nav class="main-nav">
+                <a href="#home">Início</a>
                 <a href="#solutions">Soluções</a>
                 <a href="#services">Serviços</a>
                 <a href="#process">Processo</a>
                 <a href="#cases">Resultados</a>
                 <a href="#contact" class="nav-cta">Contato</a>
             </nav>
+
+            <!-- Hamburger mobile -->
+            <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
+
+        <!-- Menu mobile -->
+        <nav id="mobile-menu" class="mobile-nav">
+            <a href="#home">Início</a>
+            <a href="#solutions">Soluções</a>
+            <a href="#services">Serviços</a>
+            <a href="#process">Processo</a>
+            <a href="#cases">Resultados</a>
+            <a href="#contact" class="nav-cta">Contato</a>
+        </nav>
     </header>
 
     <section id="home" class="hero">
@@ -100,6 +120,7 @@
             <div><i class="fas fa-check-circle"></i> Resultados Mensuráveis</div>
             <div><i class="fas fa-check-circle"></i> Atendimento Consultivo</div>
         </div>
+
     </section>
 
     <section id="solutions" class="solutions">
