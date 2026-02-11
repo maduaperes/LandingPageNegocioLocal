@@ -458,14 +458,13 @@ h3 {
     text-align: left;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.123);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.158);
 }
 
 /* Efeito de Destaque no Hover */
 .solution-card:hover {
     transform: translateY(-12px);
-    border-color: var(--accent);
-    box-shadow: var(--shadow);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.158);
 }
 
 /* Ícone da Solução */
@@ -583,14 +582,14 @@ h3 {
     text-align: left;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.123);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.158);
 }
 
 .service-box:hover {
     transform: translateY(-8px) scale(1.02);
     background: var(--white);
     border-color: var(--accent);
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.158);
 }
 
 .service-box i {
@@ -639,139 +638,129 @@ h3 {
     /* Margem de segurança para a rotação não cortar */
 }
 
-.visual-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    /* Define um limite para não estourar a lateral */
-    margin: 0 auto;
-}
-
-.visual-wrapper-bg {
-    position: absolute;
-    top: 0;
-    left: 20px;
-    width: 90%;
-    height: 90%;
-    background: #f1f5f9;
-    border-radius: 32px;
-    z-index: 1;
-    transform: rotate(6deg) translateX(15px) translateY(10px);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    pointer-events: none;
-}
-
-.performance-card {
+/* Container da imagem para manter o efeito flutuante */
+.service-main-image {
     position: relative;
     z-index: 2;
-    background: var(--white);
-    padding: 40px;
-    border-radius: 32px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    /* Animação suave para combinar com o resto do site */
+    animation: floatImage 6s ease-in-out infinite;
+    line-height: 0;
+    /* Remove espaços indesejados abaixo da imagem */
 }
 
-.performance-card::before {
+.service-main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Decoração lateral verde (opcional, para manter a identidade do card anterior) */
+.service-main-image::before {
     content: '';
     position: absolute;
     top: 20px;
     left: 0;
     width: 4px;
-    height: 100px;
+    height: 80px;
     background: var(--accent);
+    z-index: 3;
 }
 
-.progress-bar {
-    height: 12px;
-    background: #f1f5f9;
-    border-radius: 20px;
-    margin-top: 12px;
-    overflow: hidden;
-    position: relative;
-}
+/* Animação de flutuação */
+@keyframes floatImage {
 
-.progress-fill {
-    height: 100%;
-    background: var(--accent);
-    /* Cor verde de destaque */
-    border-radius: 10px;
-    width: 0;
-    /* Começa em 0 para a animação */
-    animation: fillProgress 2s ease-out forwards;
-}
-
-/* Container das barras */
-.chart-bars {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 10px;
-    height: 150px;
-    margin-top: 30px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #f1f5f9;
-}
-
-/* Estilo individual da barra */
-.chart-bars .bar {
-    width: 35px;
-    background: #e2e8f0;
-    border-radius: 8px 8px 0 0;
-    height: 0;
-    transition: height 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Barra de destaque (Verde) */
-.chart-bars .bar.highlight {
-    background: var(--accent);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Badge de porcentagem que estava solto */
-.percentage-badge {
-    position: absolute;
-    top: 38%;
-    right: -10px;
-    background: var(--accent);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 0.9rem;
-    z-index: 20;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes fillProgress {
-    to {
-        width: 85%;
+    0%,
+    100% {
+        transform: translateY(0);
     }
 
-    /* Ou o valor que você desejar para o gráfico */
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Ajuste no badge para ele não sumir atrás da imagem */
+.percentage-badge {
+    z-index: 10;
+}
+
+/* --- SEÇÃO DE PROCESSO COM LINHA INTERATIVA --- */
+.process {
+    padding: 100px 0;
+    background-color: var(--bg-light);
 }
 
 .process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     list-style: none;
     counter-reset: step;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.process-steps::before,
+.process-steps::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    height: 2px;
+    z-index: 1;
+}
+
+.process-steps::before {
+    left: calc(100% / 8);
+    right: calc(100% / 8);
+    background: #cbd5e1;
+}
+
+.process-steps::after {
+    left: calc(100% / 8);
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.process-steps:has(li:nth-child(1):hover)::after {
+    width: 12%;
+}
+
+.process-steps:has(li:nth-child(2):hover)::after {
+    width: 37%;
+}
+
+.process-steps:has(li:nth-child(3):hover)::after {
+    width: 60%;
+}
+
+.process-steps:has(li:nth-child(4):hover)::after {
+    width: 75%;
+}
+
+.process-steps:has(li:nth-child(4):hover)::after {
+    width: calc(100% - (100% / 4));
 }
 
 .process-steps li {
     position: relative;
-    padding-top: 60px;
-    text-align: center;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
 }
 
 .process-steps li::before {
-    content: counter(step);
+    content: "0" counter(step);
     counter-increment: step;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     width: 50px;
     height: 50px;
     background: var(--primary);
@@ -781,28 +770,183 @@ h3 {
     align-items: center;
     justify-content: center;
     font-weight: 800;
+    font-size: 1rem;
+    z-index: 3;
+    border: 4px solid var(--bg-light);
+    transition: var(--transition);
 }
 
-.contact-box {
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--bg-light);
-    padding: 50px;
-    border-radius: 30px;
+.process-steps li:hover::before {
+    background: var(--accent);
+    transform: scale(1.1);
 }
 
-.contact-form input,
-.contact-form textarea {
+.process-card-content {
+    background: var(--white);
+    padding: 35px 20px;
+    margin: 20px 10px 0 10px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: var(--transition);
+    width: calc(100% - 20px);
+}
+
+.process-steps li:hover .process-card-content {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.process-steps li strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+
+.process-steps li p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* --- ESTILO DE CONTATO INSPIRADO NA IMAGEM --- */
+.contact {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.contact-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.contact-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-visual img {
+    margin-top: 70px;
+    max-width: 900px;
+    width: 620px;
+    height: auto;
+    transform: scale(1.5);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.contact-form-container {
+    flex: 1;
+}
+
+.contact-subtitle {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.contact-description {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.subscribe-form input,
+.subscribe-form textarea {
     width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    font-family: inherit;
+    font-family: 'Inter', sans-serif;
+    padding: 18px 25px;
+    background-color: #f5f7f8;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-.contact-form textarea {
+.subscribe-form textarea {
+    border-radius: 20px;
     height: 120px;
+    resize: none;
+}
+
+.subscribe-form input:focus,
+.subscribe-form textarea:focus {
+    background-color: #f1f3f5;
+    border: none;
+    translate: 0 -3px;
+}
+
+/* Botão Verde da Imagem */
+.btn-get-updates {
+    background-color: #00c86f;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-get-updates:hover {
+    background-color: #00b363;
+    transform: translateY(-3px);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .contact-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-subtitle,
+    .contact-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .site-footer {
