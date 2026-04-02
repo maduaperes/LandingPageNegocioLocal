@@ -1,10 +1,10 @@
-# 🚀 Business Pro | Soluções Locais
+#  Business Pro | Soluções Locais
 
 Uma landing page moderna e responsiva desenvolvida para empresas que buscam elevar sua presença digital e otimizar a captação de clientes locais através de uma interface profissional e estratégica.
 
 ---
 
-## 📋 Índice
+##  Índice
 
 * [Sobre o Projeto](https://www.google.com/search?q=%23-sobre-o-projeto)
 * [Funcionalidades](https://www.google.com/search?q=%23-funcionalidades)
@@ -16,7 +16,7 @@ Uma landing page moderna e responsiva desenvolvida para empresas que buscam elev
 
 ---
 
-## 💻 Sobre o Projeto
+##  Sobre o Projeto
 
 O **Business Pro** é um modelo de demonstração (template) focado em conversão. O design utiliza princípios de UX (User Experience) para guiar o usuário desde a proposta de valor no *Hero* até a ação final no formulário de orçamento.
 
@@ -24,7 +24,7 @@ O **Business Pro** é um modelo de demonstração (template) focado em conversã
 
 ---
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
 * **Design Responsivo:** Adaptado para dispositivos móveis, tablets e desktops.
 * **Menu Mobile:** Navegação intuitiva com menu lateral "hamburger".
@@ -34,7 +34,7 @@ O **Business Pro** é um modelo de demonstração (template) focado em conversã
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 * **HTML5:** Estruturação semântica de dados.
 * **CSS3:** Estilização avançada com Flexbox e Grid Layout.
@@ -44,7 +44,7 @@ O **Business Pro** é um modelo de demonstração (template) focado em conversã
 
 ---
 
-## 📁 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```text
 ├── index.html          # Estrutura principal da página
@@ -55,7 +55,7 @@ O **Business Pro** é um modelo de demonstração (template) focado em conversã
 
 ---
 
-## 🚀 Como Executar
+##  Como Executar
 
 1. Clone este repositório:
 ```bash
@@ -75,7 +75,7 @@ cd business-pro
 
 ---
 
-## 🔍 Destaques Técnicos
+##  Destaques Técnicos
 
 * **SEO:** Uso de tags semânticas (`<header>`, `<section>`, `<footer>`) para melhor indexação em motores de busca.
 * **Performance:** Carregamento otimizado de fontes e ícones via CDN.
@@ -83,14 +83,10 @@ cd business-pro
 
 ---
 
-## 📧 Contato
+##  Contato
 
 **Desenvolvedora:** Madu Peres
 
 **E-mail:** [mariaeduardaaperes@hotmail.com](mailto:mariaeduardaaperes@hotmail.com)
-
----
-
-*Desenvolvido com ❤️ para fins de demonstração profissional.*
 
 ---
