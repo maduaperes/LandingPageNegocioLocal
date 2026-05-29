@@ -59,7 +59,7 @@ O **Business Pro** é um modelo de demonstração (template) focado em conversã
 
 1. Clone este repositório:
 ```bash
-git clone https://github.com/seu-usuario/business-pro.git
+git clone https://github.com/maduaperes/corporate-landing-page.git
 
 ```
 
