@@ -1,4 +1,4 @@
-#  Business Pro | Soluções Locais
+#  Business Pro - Landing Page Corporativa
 
 Uma landing page moderna e responsiva desenvolvida para empresas que buscam elevar sua presença digital e otimizar a captação de clientes locais através de uma interface profissional e estratégica.
 
